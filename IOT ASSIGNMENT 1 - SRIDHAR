@@ -1,0 +1,48 @@
+// IOT ASIGNMENT - 1
+CODE:
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(11,OUTPUT);
+  pinMode(10,INPUT);
+}
+void loop()
+{
+  {
+  double data=analogRead(A2);
+  double n=data/1024;
+  	
+  double volt=n*5;  //because connected to 5v
+
+  double off=volt-0.5;
+
+  double temperature=off*100;
+  Serial.print("Temperature data: ");
+  Serial.println(temperature);
+ if (temperature <=60)
+     {
+   digitalWrite(11,LOW);
+ }
+  else
+  {
+  digitalWrite(11,HIGH);
+  delay(1000);
+  digitalWrite(11,LOW);
+  delay(1000);
+  }
+  }
+  {
+  int motion=digitalRead(10);
+    if (motion==1){
+      Serial.println("motion is Detected ");
+    digitalWrite(11,HIGH);
+  delay(5000);
+  digitalWrite(11,LOW);
+  delay(500);
+                 }
+                 else{
+                   Serial.println("no Motion");
+                 digitalWrite(11,LOW);
+                 }
+                 }
+                 }
